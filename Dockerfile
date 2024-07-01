@@ -14,7 +14,7 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go test -mod=vendor -trimpath -ldflags "-s -w" ./...
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -mod=vendor -trimpath -ldflags "-s -w"
 
-FROM alpine:3.16
+FROM alpine:3
 RUN apk update && apk add --no-cache ca-certificates
 COPY --from=build /src/fabio /usr/bin
 ADD fabio.properties /etc/fabio/fabio.properties
